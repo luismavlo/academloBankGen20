@@ -6,6 +6,7 @@ const db = new Sequelize({
   username: process.env.DB_USERNAME, //usuario por defecto postgre
   password: process.env.DB_PASSWORD, //contraseña que se digita en postgre
   database: process.env.DB_DATABASE, //nombre de la base de datos
+  port: process.env.DB_PORT,
   logging: false,
 });
 
