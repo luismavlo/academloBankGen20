@@ -22,7 +22,7 @@ exports.uploadAmount = catchAsync(async (req, res, next) => {
   const { user } = req;
 
   await user.update({
-    amount: user.amount + amount,
+    amount: +user.amount + Number(amount),
   });
 
   res.status(200).json({
