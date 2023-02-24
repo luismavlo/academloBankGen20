@@ -110,6 +110,17 @@ exports.findHistory = catchAsync(async (req, res, next) => {
 
 exports.closeAccount = catchAsync(async (req, res, next) => {
   const { user } = req;
+  const { accountNumber, password } = req.body;
+
+  if (user.accountNumber !== accountNumber) {
+    return next(
+      new AppError(`the account number does not match the user's`, 400)
+    );
+  }
+
+  if (!(await bcrypt.compare(password, user.password))) {
+    return next(new AppError('Incorrect password', 401));
+  }
 
   await user.update({ status: false });
 

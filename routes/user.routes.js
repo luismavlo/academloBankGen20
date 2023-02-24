@@ -29,8 +29,10 @@ router.get('/:id/history', validUser, protectAccountOwner, findHistory);
 
 router.get('/renew', renewToken);
 
-router.delete(
+router.patch(
   '/close/account/:id',
+  loginUserValidation,
+  validateFields,
   validUser,
   protectAccountOwner,
   closeAccount
